@@ -519,6 +519,27 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Create social sharing buttons
+    const shareMessage = encodeURIComponent(
+      `Check out ${name} at Mergington High School! ${details.description}`
+    );
+    const baseUrl = window.location.origin + window.location.pathname;
+    const shareUrl = encodeURIComponent(`${baseUrl}?activity=${encodeURIComponent(name)}`);
+    const shareHtml = `
+      <div class="share-buttons">
+        <span class="share-label">Share:</span>
+        <a href="https://twitter.com/intent/tweet?text=${shareMessage}&url=${shareUrl}"
+           target="_blank" rel="noopener noreferrer"
+           class="share-btn share-twitter" aria-label="Share on Twitter/X" title="Share on Twitter/X">𝕏</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareMessage}"
+           target="_blank" rel="noopener noreferrer"
+           class="share-btn share-facebook" aria-label="Share on Facebook" title="Share on Facebook">f</a>
+        <a href="https://wa.me/?text=${shareMessage}%20${shareUrl}"
+           target="_blank" rel="noopener noreferrer"
+           class="share-btn share-whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">W</a>
+      </div>
+    `;
+
     activityCard.innerHTML = `
       ${tagHtml}
       <h4>${name}</h4>
@@ -568,6 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `
         }
+        ${shareHtml}
       </div>
     `;
 
